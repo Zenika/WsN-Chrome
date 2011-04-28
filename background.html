@@ -1,0 +1,67 @@
+<script src="http://hostname:8124/socket.io/socket.io.js"></script>
+
+<script>
+
+// Server configuration
+var SERVER_HOST = 'hostname';
+var SERVER_PORT = 8124;
+
+// Nofication display time in ms.
+var NOTIFICATION_DISPLAY_TIME = 5000;
+
+// Regular expression to catch links in tweets.
+var EXP = new RegExp('(http://[a-zA-Z0-9./-]+)','gi');
+var LINK = '<a href="$1" target="_blank">$1</a>';
+
+// Store the last weet received.
+var tweet;
+
+// Store the five last received.
+var tweets = [];
+
+// Counter to store and display the number of new tweets when notifications are disabled.
+var news = 0;
+
+// Socket.IO client creation and connection with Node server.
+var socket = new io.Socket(SERVER_HOST, { port : SERVER_PORT });
+
+socket.connect();
+
+// Listening to the 'message' event, it will be fired
+// each time our Node server send us a new tweet.
+socket.on('message', function(data){
+
+	// Parsing the data to make a json object
+	tweet = JSON.parse(data);
+	
+	// Converting links in links...
+	tweet.text = tweet.text.replace(EXP, LINK)
+	
+	// Storing only the five last tweet to display them in the popup
+	if(tweets.length == 5)
+		tweets.pop();
+	tweets.unshift(tweet);
+	
+	// Counter incrementation
+	news++;
+	
+	// Display the notification if the user allow it or update
+	// the counter to alert the user.
+	if(window.localStorage.noticationEnable == 'true'){
+		var notification = webkitNotifications.createHTMLNotification("notification.html");
+		notification.show();
+		// Hide the notification after the configured duration.
+		setTimeout(function(){ notification.cancel(); tweet = null; }, NOTIFICATION_DISPLAY_TIME);
+	}else{
+        // Set the text layered on the icon
+		chrome.browserAction.setBadgeText({ text : news + ""});
+	}
+	
+});
+
+// Reset the badge counter when a user click on the browser action icon.
+function resetBadgeText(){
+	news = 0;
+	chrome.browserAction.setBadgeText({ text : ""});
+}
+</script>

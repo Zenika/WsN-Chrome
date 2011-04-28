@@ -1,0 +1,33 @@
+body { width:300px; background-color:#FFFFFF; font-family: Arial; font-size:10px; color:#000000; }
+
+a { color: #942723; text-decoration:none; }
+a:hover { color: #CC0000; }
+a:visited { color: #942723; }
+
+/* Popup */
+#head { text-align:center; }
+#head img { width:300px; margin-bottom:3px; }
+
+#config { margin-bottom:5px; }
+#config input { float:left; }
+#config label { color: #4c4c4c; float:left; margin-top:3px; }
+#config div { clear:left; }
+
+.tweet { margin-top:5px; border-bottom: 1px dotted #333333; }
+.picture { float:left; padding:5px 10px 5px 5px; }
+.picture img { border:1px solid #CCCCCC; width:50px; }
+.content { padding:5px; }
+.user { font-weight:bold; color:#942723; }
+.tweet { margin-top:2px; color:#4c4c4c; }
+
+#footer { text-align:center; margin-top:3px; }
+#footer img { width:150px; }
+#footer a { display:block; }
+
+/* Notification */
+#notification { width: 280px;}
+#notification #picture {float:left; padding-right: 5px; }
+#notification #picture img { border:1px solid #CCCCCC; width:50px; }
+#notification #content { padding: 0px 5px 5px 0px; }
+#notification #content #user { font-weight:bold; color:#942723; }
+#notification #content #tweet {  margin-top:2px; color:#4c4c4c; }

@@ -1,0 +1,19 @@
+{
+	"name": "What's Next Paris - Live !",
+	
+	"version": "1.0",
+	
+	"description": "Follow The What's Next Paris Tweets",
+	
+	"background_page": "background.html",
+	
+	"permissions": [
+		"notifications"
+	],
+
+	"browser_action": {
+		"default_icon": "pics/zenika-sall.png",
+		"popup": "popup.html"
+	}
+	
+}
