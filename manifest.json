@@ -12,7 +12,7 @@
 	],
 
 	"browser_action": {
-		"default_icon": "pics/zenika-sall.png",
+		"default_icon": "pics/zenika-small.png",
 		"popup": "popup.html"
 	}
 	
